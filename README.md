@@ -13,7 +13,7 @@ __Mono-Sample training__
 
 __Multi-Sample training__
 
-![GROBID Dictionaries Structure](img/Chart_lexical-entryBigram.png)
+![MultiSample Training](img/Histo_lexical-entryEngineered.png)
 
 
 __Learning Curve__
