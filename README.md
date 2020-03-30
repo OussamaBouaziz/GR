@@ -11,6 +11,8 @@ We started to support key models in [GROBID](https://github.com/kermitt2/grobid)
 
 __Mono-Sample training__
 
+![MonoSample Training](img/Histo_dateEngineered.png)
+
 __Multi-Sample training__
 
 ![MultiSample Training](img/Histo_lexical-entryEngineered.png)
