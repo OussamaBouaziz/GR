@@ -9,9 +9,7 @@ We started to support key models in [GROBID](https://github.com/kermitt2/grobid)
 ## Example of Benchmarking Scenarios
 
 
-__Mono-Sample training__
 
-![MonoSample Training](img/Histo_dateEngineered.png)
 
 __Multi-Sample training__
 
