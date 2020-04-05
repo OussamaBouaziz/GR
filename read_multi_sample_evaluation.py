@@ -16,11 +16,11 @@ arrDictModels= ["dictionary-segmentation", "dictionary-body-segmentation", "lexi
 arrFeatures= ["Unigram", "Engineered", "Bigram"]
 modelLabels =[]
 
-data_folderEEBD = Path("/Users/med/Google Drive/experimentDisseration/BasicEnglish2020/evalWAPITI/Eebd/")
-data_folderMxSp = Path("/Users/med/Google Drive/experimentDisseration/mixtec/versionSeptember/evalWAPITI/Mix-Sp/")
-data_folderFangFr = Path("/Users/med/Google Drive/experimentDisseration/fang-fr/evalWAPITI/Fang-Fr/")
-data_folderFrFang = Path("/Users/med/Google Drive/experimentDisseration/fr-fang/evalWAPITI/FrFang/")
-data_folderDLF = Path("/Users/med/Google Drive/experimentDisseration/DLFVol1/evalWAPITI/DLF/")
+data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/Eebd/")
+data_folderMxSp = Path("grobid-dictionaries_data/MxSp/evalWAPITI/Mix-Sp/")
+data_folderFangFr = Path("grobid-dictionaries_data/FangFr/evalWAPITI/Fang-Fr/")
+data_folderFrFang = Path("grobid-dictionaries_data/FrFang/evalWAPITI/FrFang/")
+data_folderDLF = Path("grobid-dictionaries_data/DLF/evalWAPITI/DLF/")
 
 font = {'weight' : 'normal',
         'size'   : 16}
@@ -218,7 +218,7 @@ def generate_figure_per_feature (arrDictModel, kk):
     autolabel(rects5)
 
 
-    fig.savefig(f'/Users/med/Google Drive/experimentDisseration/histogramwithNewEngineered/Chart_{arrDictModel+kk}.png', dpi=100)
+    fig.savefig(f'figures/Histogram_{arrDictModel+kk}.png', dpi=100)
     plt.close(fig)
 
 def generate_figure_per_model(model_name):

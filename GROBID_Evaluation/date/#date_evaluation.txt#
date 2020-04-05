@@ -1,0 +1,21 @@
+
+
+===== Field-level results =====
+
+label                accuracy     precision    recall       f1           support
+
+<day>                99.32        100          96.65        98.3         179    
+<month>              99.89        100          99.59        99.8         246    
+<year>               99.43        98.12        100          99.05        261    
+
+all (micro avg.)     99.55        99.27        98.98        99.12        686    
+all (macro avg.)     99.55        99.37        98.75        99.05        686    
+
+===== Instance-level results =====
+
+Total expected instances:   260
+Correct instances:          254
+Instance-level recall:      97.69
+
+
+

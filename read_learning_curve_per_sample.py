@@ -12,17 +12,17 @@ from pathlib import Path
 
 arrDictModels= ["dictionary-segmentation", "dictionary-body-segmentation", "lexical-entry", "form", "gramGrp", "sense", "sub-sense"]
 
-dict_folderEEBD = Path("/Users/med/Google Drive/experimentDisseration/BasicEnglish2020/dataset/")
-dict_folderMxSp = Path("/Users/med/Google Drive/experimentDisseration/mixtec/versionSeptember/dataset/")
-dict_folderFangFr = Path("/Users/med/Google Drive/experimentDisseration/fang-fr/dataset/")
-dict_folderFrFang = Path("/Users/med/Google Drive/experimentDisseration/fr-fang/dataset/")
-dict_folderDLF = Path("/Users/med/Google Drive/experimentDisseration/DLFVol1/dataset/")
+dict_folderEEBD = Path("grobid-dictionaries_data/EEBD/dataset/")
+dict_folderMxSp = Path("grobid-dictionaries_data/MxSp/dataset/")
+dict_folderFangFr = Path("grobid-dictionaries_data/FangFr/dataset/")
+dict_folderFrFang = Path("grobid-dictionaries_data/FrFang/dataset/")
+dict_folderDLF = Path("grobid-dictionaries_data/DLF/dataset/")
 
 # batch_folderDLF = Path("/Users/med/Google Drive/experimentDisseration/BasicEnglish2020/dataset/")
 
 # data_folderDLF = Path("/Users/med/Google Drive/experimentDisseration/BasicEnglish2020/evalWAPITI/Eebd/")
 
-data_folderEEBD = Path("/Users/med/Google Drive/experimentDisseration/BasicEnglish2020/evalWAPITI/Eebd/")
+data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
 
 def get_feature_for_model(model_name, dictionary, ff):
     if model_name == "dictionary-segmentation":
@@ -103,7 +103,7 @@ def get_root_from_table(table):
             break
         else:
             if not (element ==""):
-                root_path += "/"+element
+                root_path += element +"/"
 
     return root_path
 
@@ -130,11 +130,11 @@ subsense_size=[]
 subsense_score=[]
 
 def get_curve_dictionary (arrModels,fk):
-    data_folderEEBD = Path("/Users/med/Google Drive/experimentDisseration/BasicEnglish2020/evalWAPITI/Eebd/")
-    data_folderMxSp = Path("/Users/med/Google Drive/experimentDisseration/mixtec/versionSeptember/evalWAPITI/Mix-Sp/")
-    data_folderFangFr = Path("/Users/med/Google Drive/experimentDisseration/fang-fr/evalWAPITI/Fang-Fr/")
-    data_folderFrFang = Path("/Users/med/Google Drive/experimentDisseration/fr-fang/evalWAPITI/FrFang/")
-    data_folderDLF = Path("/Users/med/Google Drive/experimentDisseration/DLFVol1/evalWAPITI/DLF/")
+    data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
+    data_folderMxSp = Path("grobid-dictionaries_data/MxSp/evalWAPITI/Mix-Sp/")
+    data_folderFangFr = Path("grobid-dictionaries_data/FangFr/evalWAPITI/Fang-Fr/")
+    data_folderFrFang = Path("grobid-dictionaries_data/FrFang/evalWAPITI/FrFang/")
+    data_folderDLF = Path("grobid-dictionaries_data/DLF/evalWAPITI/DLF/")
 
     arrPaths= [data_folderEEBD, data_folderMxSp, data_folderFangFr, data_folderFrFang, data_folderDLF]
     for dict_path in arrPaths:
@@ -191,7 +191,7 @@ def get_curve_dictionary (arrModels,fk):
         plt.ylabel('F1-score (Macro-average)', fontsize=16)
         # plt.title(dictname+"'s Learning Curves", fontsize=16)
         plt.legend(fontsize=16)
-        fig.savefig(f'/Users/med/Google Drive/experimentDisseration/learningCurvePerDictionary/Chart_{dictname}.png', dpi=100)
+        fig.savefig(f'figures/Curve_{dictname}.png', dpi=100)
         plt.close(fig)
 
 get_curve_dictionary(arrDictModels,fk)
