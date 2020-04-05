@@ -22,3 +22,12 @@ __Learning Curve__
 To experiment the generation of such figures, you could follow instructions of _Scenario 2_ on the [Wiki page](https://github.com/MedKhem/grobid-benchmark/wiki/Example-of-Usage-Scenarios#scenario-2-visualising-the-learning-curve-of-trained-models) 
 
 ![GROBID Dictionaries Structure](img/Chart_DLF.png)
+
+## Requirements
+* Python 3 or higher 
+
+* Matplotlib 3.1.1 
+
+## Contact
+
+Mohamed Khemakhem (mohamed.khemakhem@inria.fr)
