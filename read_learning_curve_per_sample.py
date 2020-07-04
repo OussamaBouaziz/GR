@@ -135,6 +135,7 @@ sense_score=[]
 subsense_size=[]
 subsense_score=[]
 
+#OB: So if the Output of a function is a plot we don't need return ?
 def get_curve_dictionary (arrModels,fk):
     data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
     data_folderMxSp = Path("grobid-dictionaries_data/MxSp/evalWAPITI/Mix-Sp/")
@@ -144,7 +145,12 @@ def get_curve_dictionary (arrModels,fk):
 
     arrPaths= [data_folderEEBD, data_folderMxSp, data_folderFangFr, data_folderFrFang, data_folderDLF]
     for dict_path in arrPaths:
-        dictpatharray = str(dict_path).split('/')
+
+        if platform.system() == 'Windows':
+            dictpatharray = str(dict_path).split('\\')
+        else:
+            dictpatharray = str(dict_path).split('/')
+
         dictname = dictpatharray[len(dictpatharray)-1]
         print(dictname)
         for dictModel in arrModels:
@@ -174,6 +180,7 @@ def get_curve_dictionary (arrModels,fk):
 
 
 
+        #OB: plotting everything I guess
 
         fig = plt.figure()
         fig.set_size_inches(20.5, 10.5,44)
