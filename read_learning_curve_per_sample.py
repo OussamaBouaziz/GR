@@ -6,7 +6,6 @@ This is a temporary script file.
 """
 
 import numpy as np
-import platform
 from matplotlib import pyplot as plt
 
 from pathlib import Path
@@ -101,7 +100,6 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
 def get_root_from_table(table):
     root_path=""
     for element in table:
-        print('hfi', element)
         if element == "evalWAPITI":
             break
         else:
@@ -132,38 +130,6 @@ sense_score=[]
 subsense_size=[]
 subsense_score=[]
 
-
-def sieb(arrPaths):
-    Table= ["EEBD","MxSp","FangFr","FrFang","DLF"]
-    
-    data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
-    data_folderMxSp = Path("grobid-dictionaries_data/MxSp/evalWAPITI/Mix-Sp/")
-    data_folderFangFr = Path("grobid-dictionaries_data/FangFr/evalWAPITI/Fang-Fr/")
-    data_folderFrFang = Path("grobid-dictionaries_data/FrFang/evalWAPITI/FrFang/")
-    data_folderDLF = Path("grobid-dictionaries_data/DLF/evalWAPITI/DLF/")
-
-    arrPaths= [data_folderEEBD, data_folderMxSp, data_folderFangFr, data_folderFrFang, data_folderDLF]
-   
-    print(Table)
-    print("Combien de dictionnaires des 5 voulez-vous analyser?")
-    n =int(input())
-    if (n <5):
-        print("Quels dictionnaires voulez-vous analyser ?")
-        Antab=[]
-        sarrPaths=[]
-        for i in range(n):
-            j=int(input())
-            Antab.append(Table[j-1])
-            sarrPaths.append(arrPaths[j-1])
-            print("les dictionnaires qui seront analysés sont: ", Antab)
-    elif n==5:  
-        print("les dictionnaires qui seront analysés sont: ", Table)
-        sarrPaths=arrPaths
-    else : print("error")
-    print(sarrPaths)
-    return sarrPaths
-
-
 def get_curve_dictionary (arrModels,fk):
     data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
     data_folderMxSp = Path("grobid-dictionaries_data/MxSp/evalWAPITI/Mix-Sp/")
@@ -172,13 +138,8 @@ def get_curve_dictionary (arrModels,fk):
     data_folderDLF = Path("grobid-dictionaries_data/DLF/evalWAPITI/DLF/")
 
     arrPaths= [data_folderEEBD, data_folderMxSp, data_folderFangFr, data_folderFrFang, data_folderDLF]
-    tab=sieb(arrPaths)
-    for dict_path in tab:
-        print('Platform System', platform.system())
-        if platform.system() == 'Windows': 
-            dictpatharray = str(dict_path).split('\\')
-        else: 
-            dictpatharray = str(dict_path).split('/')
+    for dict_path in arrPaths:
+        dictpatharray = str(dict_path).split('/')
         dictname = dictpatharray[len(dictpatharray)-1]
         print(dictname)
         for dictModel in arrModels:
