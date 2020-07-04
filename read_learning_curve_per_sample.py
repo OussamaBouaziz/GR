@@ -7,7 +7,7 @@ This is a temporary script file.
 
 import numpy as np
 from matplotlib import pyplot as plt
-
+import platform
 from pathlib import Path
 
 arrDictModels= ["dictionary-segmentation", "dictionary-body-segmentation", "lexical-entry", "form", "gramGrp", "sense", "sub-sense"]
@@ -144,8 +144,8 @@ def get_curve_dictionary (arrModels,fk):
     data_folderDLF = Path("grobid-dictionaries_data/DLF/evalWAPITI/DLF/")
 
     arrPaths= [data_folderEEBD, data_folderMxSp, data_folderFangFr, data_folderFrFang, data_folderDLF]
-    for dict_path in arrPaths:
 
+    for dict_path in arrPaths:
         if platform.system() == 'Windows':
             dictpatharray = str(dict_path).split('\\')
         else:
