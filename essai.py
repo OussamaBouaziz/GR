@@ -59,14 +59,13 @@ def ask_me(urpath):
         if dictpath[n - 1] == "grobid-dictionaries_data":
             #or dictpath[n - 2] == "grobid-dictionaries_data".strip("\\"):
             print("You will find the evaluation of all dictionaries in the figures directory")
-            eval_path = subpaths #That is an array = problem - you have to modify the type - case (a dictionary might be helpful)
+            # That is an array = problem - you have to modify the type - case (a dictionary might be helpful)
+            eval_path = subpaths
             print(eval_path, "<<<<<")
             break
 
         else:
             if dictpath[i - 1] in dict_dict:
-                #print(dict_dict[dictpath[i - 1]], "*****")
-                #print(type(dictpath[i - 1]))
                 eval_path = dict_dict[dictpath[i - 1]]
                 print(type(dict_dict[dictpath[i - 1]]))
                 print(eval_path)

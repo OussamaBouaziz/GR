@@ -12,6 +12,7 @@ from pathlib import Path
 
 arrDictModels= ["dictionary-segmentation", "dictionary-body-segmentation", "lexical-entry", "form", "gramGrp", "sense", "sub-sense"]
 
+#OB: assigning a path (of type path) to each of the variables.
 dict_folderEEBD = Path("grobid-dictionaries_data/EEBD/dataset/")
 dict_folderMxSp = Path("grobid-dictionaries_data/MxSp/dataset/")
 dict_folderFangFr = Path("grobid-dictionaries_data/FangFr/dataset/")
@@ -24,6 +25,7 @@ dict_folderDLF = Path("grobid-dictionaries_data/DLF/dataset/")
 
 data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
 
+#OB: depending on strings existing in model_name the ff variable will take the next string in order to get to the feature.
 def get_feature_for_model(model_name, dictionary, ff):
     if model_name == "dictionary-segmentation":
         ff="Bigram"
@@ -63,6 +65,8 @@ def get_feature_for_model(model_name, dictionary, ff):
 def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     sizearray=[0]
     scorearray=[0]
+    #OB: detected another fuction which is used here, defined after this one.
+    #OB: changing the type of a string into pathlib.WindowsPath
     dict_root = Path(get_root_from_table(dict_path))
     for i in range(1,5):
         filepath = dict_root/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
@@ -97,6 +101,7 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
                 line = fp.readline()
     return sizearray, scorearray;
 
+#OB: takes an array as it appears and returns a string. The path, initialized as a null string, is being constituted after each iteration.
 def get_root_from_table(table):
     root_path=""
     for element in table:
