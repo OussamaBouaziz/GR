@@ -8,13 +8,13 @@ urpath = input()
 def ask_me(urpath):
 
     print("Please enter the Path of the dictionary you want to evaluate")
-    dict_folderEEBD = Path("grobid-dictionaries_data/EEBD/dataset/")
-    dict_folderMxSp = Path("grobid-dictionaries_data/MxSp/dataset/")
-    dict_folderFangFr = Path("grobid-dictionaries_data/FangFr/dataset/")
-    dict_folderFrFang = Path("grobid-dictionaries_data/FrFang/dataset/")
-    dict_folderDLF = Path(Path("grobid-dictionaries_data/EEBD/dataset/"))
+    data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
+    data_folderMxSp = Path("grobid-dictionaries_data/MxSp/evalWAPITI/Mix-Sp/")
+    data_folderFangFr = Path("grobid-dictionaries_data/FangFr/evalWAPITI/Fang-Fr/")
+    data_folderFrFang = Path("grobid-dictionaries_data/FrFang/evalWAPITI/FrFang/")
+    data_folderDLF = Path("grobid-dictionaries_data/DLF/evalWAPITI/DLF/")
 
-    subpaths = [dict_folderEEBD, dict_folderMxSp, dict_folderFangFr, dict_folderFrFang, dict_folderDLF]
+    subpaths = [data_folderEEBD, data_folderMxSp, data_folderFangFr, data_folderFrFang, data_folderDLF]
 
     subpath = ["grobid-dictionaries_data\EEBD\dataset", "grobid-dictionaries_data\MxSp\dataset",
                 "grobid-dictionaries_data\FangFr\dataset", "grobid-dictionaries_data\FrFang\dataset",
@@ -65,10 +65,11 @@ def ask_me(urpath):
             break
 
         else:
-            if dictpath[i - 1] in dict_dict:
-                eval_path = dict_dict[dictpath[i - 1]]
-                print(type(dict_dict[dictpath[i - 1]]))
-                print(eval_path)
+            if dictpath[i - 1] in dict_dict: #I have to figure out how to get the index from the search in dictionary
+                print(dict_dict.get(dict_path[i - 1]))
+                eval_path.append(dict_dict.get(dict_path[i - 1]))
+                #print(type(dict_dict[dictpath[i - 1]]))
+                #print(eval_path)
                 break
 
             else:
