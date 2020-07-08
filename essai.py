@@ -2,12 +2,11 @@ import os
 import platform
 from pathlib import Path
 
-print("Please type the path to the Dictionary/ies you want to have analyzed ")
+print("Please enter the Path of the dictionary you want to evaluate")
 urpath = input()
 
 def ask_me(urpath):
 
-    print("Please enter the Path of the dictionary you want to evaluate")
     data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
     data_folderMxSp = Path("grobid-dictionaries_data/MxSp/evalWAPITI/Mix-Sp/")
     data_folderFangFr = Path("grobid-dictionaries_data/FangFr/evalWAPITI/Fang-Fr/")
@@ -65,9 +64,23 @@ def ask_me(urpath):
             break
 
         else:
-            if dictpath[i - 1] in dict_dict: #I have to figure out how to get the index from the search in dictionary
-                print(dict_dict.get(dict_path[i - 1]))
-                eval_path.append(dict_dict.get(dict_path[i - 1]))
+            if dictpath[i - 1] in dict_dict:
+                # I have to figure out how to get the index from the search in dictionary
+                # here is a test :
+                search= dictpath[i-1]
+                index = list(dict_dict.keys()).index(search)
+                print(index)
+                print(subpaths[index])
+                eval_path=  eval_path.append(subpaths[index])
+                print(search)
+                print(index)
+                print(eval_path)
+
+
+
+                #print(dict_path[i - 1])
+                #print(dict_dict.get(dict_path[i - 1]))
+                #eval_path.append(dict_dict.get(dict_path[i - 1]))
                 #print(type(dict_dict[dictpath[i - 1]]))
                 #print(eval_path)
                 break
