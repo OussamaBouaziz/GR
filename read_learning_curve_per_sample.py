@@ -25,7 +25,7 @@ dict_folderDLF = Path("grobid-dictionaries_data/DLF/dataset/")
 
 data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
 
-#OB: depending on strings existing in model_name the ff variable will take the next string in order to get to the feature.
+#OB: depending on strings existing in model_name the ff variable will take the next string in order to get to the feature (completing the path).
 def get_feature_for_model(model_name, dictionary, ff):
     if model_name == "dictionary-segmentation":
         ff="Bigram"
@@ -75,6 +75,7 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
         print ("sizepath ", filepath)
         print ("datapath ", filepathData)
         #fill in the batche size array incrementally
+        #OB: well this is new to me !
         with open(filepath) as fp:
             line = fp.readline()
             # print (line)
@@ -92,6 +93,7 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
         with open(filepathData) as fp:
             line = fp.readline()
             cnt = 1
+            #OB : the above used variable does not seem to be used.
             while line:
                 line=" ".join(line.split())
                 if "(macro" in str(line).split(' '):
