@@ -61,7 +61,7 @@ def get_feature_for_model(model_name, dictionary, ff):
     return ff
 
 
-
+#OB:
 def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     sizearray=[0]
     scorearray=[0]
@@ -75,7 +75,7 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
         print ("sizepath ", filepath)
         print ("datapath ", filepathData)
         #fill in the batche size array incrementally
-        #OB: well this is new to me !
+        #OB: well this [fp, open(), readline()] is new to me  !
         with open(filepath) as fp:
             line = fp.readline()
             # print (line)
@@ -86,6 +86,7 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
                 previous=sizearray[i - 1]
                 # print ('index',i-1)
                 sizearray.append(int(previous) + int(str(line).split(' ')[0]))
+                #another variable that hasn't been used
                 current=sizearray[i ]
                 print ('size',sizearray)
 
@@ -93,7 +94,7 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
         with open(filepathData) as fp:
             line = fp.readline()
             cnt = 1
-            #OB : the above used variable does not seem to be used.
+            #OB : the above defined variable does not seem to be used.
             while line:
                 line=" ".join(line.split())
                 if "(macro" in str(line).split(' '):
@@ -214,3 +215,4 @@ get_curve_dictionary(arrDictModels,fk)
 # dictnamearray = str(data_folderEEBD).split('/')
 # print(dictnamearray)
 # print(get_root_from_table(dictnamearray))
+#save check
