@@ -60,12 +60,26 @@ def get_feature_for_model(model_name, dictionary, ff):
 
     return ff
 
+#OB: Replaced the function, #OB: takes an array and returns a string.
+# The path,or root, initialized as a null string, is being constituted after
+# each iteration. It will later (function: getarraysfromdict) constitute a part of the path leading to the batch
+
+def get_root_from_table(table):
+    root_path=""
+    for element in table:
+        if element == "evalWAPITI":
+            break
+        else:
+            if not (element ==""):
+                root_path += element +"/"
+
+    return root_path
 
 #OB:
 def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     sizearray=[0]
     scorearray=[0]
-    #OB: detected another fuction which is used here, defined after this one.
+    #OB: detected another fuction which is used here, defined after this one. Replaced it above.
     #OB: changing the type of a string into pathlib.WindowsPath
     dict_root = Path(get_root_from_table(dict_path))
     for i in range(1,5):
@@ -104,19 +118,10 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
                 line = fp.readline()
     return sizearray, scorearray;
 
-#OB: takes an array as it appears and returns a string. The path, initialized as a null string, is being constituted after each iteration.
-def get_root_from_table(table):
-    root_path=""
-    for element in table:
-        if element == "evalWAPITI":
-            break
-        else:
-            if not (element ==""):
-                root_path += element +"/"
 
-    return root_path
 
 fk="Engineered"
+#OB: These are void tables that will be filled with the batch sizes for each dictionary and the scorings that we want to detect.
 ds_size=[]
 ds_score=[]
 
