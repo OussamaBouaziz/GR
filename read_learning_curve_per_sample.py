@@ -113,7 +113,7 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
         with open(filepathData) as fp:
             line = fp.readline()
             cnt = 1
-            #OB : the above defined variable does not seem to be used.
+            #OB : the above defined variable does not seem to be used, why is it there?
             while line:
                 line=" ".join(line.split())
                 if "(macro" in str(line).split(' '):
