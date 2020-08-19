@@ -61,7 +61,8 @@ def get_feature_for_model(model_name, dictionary, ff):
 
     return ff
 
-#OB: Replaced the function, #OB: takes an array and returns a string.
+#OB: Replaced the function,
+# #OB: takes an array and returns a string.
 # The path,or root, initialized as a null string, is being constituted after
 # each iteration. It will later (function: getarraysfromdict) constitute a part of the path leading to the batch
 
@@ -94,6 +95,8 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
         with open(filepath) as fp:
             line = fp.readline()
             # print (line)
+            #OB: I don't get this !the initiation is sizearray=[0], len(sizearray)=1 , how can len(sizearray)==0 or
+            # why do we have this step at all ?
             if len(sizearray)==0:
                 sizearray.append(int(str(line).split(' ')[0]))
                 print ('size', sizearray)
@@ -104,6 +107,7 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
                 #another variable that hasn't been used
                 current=sizearray[i ]
                 print ('size',sizearray)
+                #OB: I guess this is a part from the output: the table where the batch sizes are recorded.
 
         #fill in the fscore of macroaverage
         with open(filepathData) as fp:
