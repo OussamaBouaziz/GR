@@ -25,7 +25,8 @@ dict_folderDLF = Path("grobid-dictionaries_data/DLF/dataset/")
 
 data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
 
-#OB: depending on strings existing in model_name the ff variable will take the next string in order to get to the feature (completing the path).
+#OB: depending on strings existing in model_name the ff variable will take the next string in order to
+# get to the feature (completing the path).
 def get_feature_for_model(model_name, dictionary, ff):
     if model_name == "dictionary-segmentation":
         ff="Bigram"
