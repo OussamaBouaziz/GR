@@ -147,7 +147,8 @@ def get_curve_dictionary (arrModels,fk):
     data_folderDLF = Path("grobid-dictionaries_data/DLF/evalWAPITI/DLF/")
 
     arrPaths= [data_folderEEBD, data_folderMxSp, data_folderFangFr, data_folderFrFang, data_folderDLF]
-#OB: Alors dict_path doit être retiree de cette boucle et doit être eingegeben as input()
+#OB: Alors dict_path doit être retiree de cette boucle et doit être eingegeben as input().
+#OB: arrPaths won't be needed !
     for dict_path in arrPaths:
         if platform.system() == 'Windows':
             dictpatharray = str(dict_path).split('\\')
