@@ -94,17 +94,10 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
         #OB: well this [fp, open(), readline()] is new to me  !
         with open(filepath) as fp:
             line = fp.readline()
-            # print (line)
-            #OB: I don't get this !the initiation is sizearray=[0], len(sizearray)=1 , how can len(sizearray)==0 or
-            # why do we have this step/condition at all ?
-
             previous=sizearray[i - 1]
-                # print ('index',i-1)
             sizearray.append(int(previous) + int(str(line).split(' ')[0]))
-                #another variable that hasn't been used
-            current=sizearray[i ]
             print ('size',sizearray)
-                #OB: I guess this is a part from the output: the table where the batch sizes are recorded.
+            #OB: I guess this is a part from the output: the table where the batch sizes are recorded.
 
         #fill in the fscore of macroaverage
         with open(filepathData) as fp:
