@@ -62,7 +62,7 @@ def get_feature_for_model(model_name, dictionary, ff):
     return ff
 
 #OB: Replaced the function,
-# #OB: takes an array and returns a string.
+#OB: takes an array and returns a string.
 # The path,or root, initialized as a null string, is being constituted after
 # each iteration. It will later (function: getarraysfromdict) constitute a part of the path leading to the batch
 
@@ -147,7 +147,7 @@ def get_curve_dictionary (arrModels,fk):
     data_folderDLF = Path("grobid-dictionaries_data/DLF/evalWAPITI/DLF/")
 
     arrPaths= [data_folderEEBD, data_folderMxSp, data_folderFangFr, data_folderFrFang, data_folderDLF]
-
+#OB: Alors dict_path doit être retiree de cette boucle et doit être eingegeben as input()
     for dict_path in arrPaths:
         if platform.system() == 'Windows':
             dictpatharray = str(dict_path).split('\\')
