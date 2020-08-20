@@ -84,6 +84,8 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     #OB: changing the type of a string into pathlib.WindowsPath
     dict_root = Path(get_root_from_table(dict_path))
     #OB: C'est une variable clé 1 !
+    # OB: Alors dict_path doit être retiree de cette boucle et doit être eingegeben as input().
+    # OB: dictpath won't be needed !
     for i in range(1,5):
         filepath = dict_root/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
         fileName="Feature"+kk+"DataLevel"+str(i)+".txt"
@@ -147,8 +149,7 @@ def get_curve_dictionary (arrModels,fk):
     data_folderDLF = Path("grobid-dictionaries_data/DLF/evalWAPITI/DLF/")
 
     arrPaths= [data_folderEEBD, data_folderMxSp, data_folderFangFr, data_folderFrFang, data_folderDLF]
-#OB: Alors dict_path doit être retiree de cette boucle et doit être eingegeben as input().
-#OB: arrPaths won't be needed !
+
     for dict_path in arrPaths:
         if platform.system() == 'Windows':
             dictpatharray = str(dict_path).split('\\')
@@ -156,7 +157,7 @@ def get_curve_dictionary (arrModels,fk):
             dictpatharray = str(dict_path).split('/')
 
         dictname = dictpatharray[len(dictpatharray)-1]
-        print(dictname)
+        print(dictname,"****")
         for dictModel in arrModels:
             if dictModel== "dictionary-segmentation":
                 fk=get_feature_for_model(dictModel, dictname, fk)
