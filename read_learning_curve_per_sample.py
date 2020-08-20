@@ -77,13 +77,13 @@ def get_root_from_table(table):
 
     return root_path
 
-
-# OB: detected another fuction which is used here, defined after this one. Replaced it above this one.
+# OB: Replaced function above this one.
 def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     sizearray=[0]
     scorearray=[0]
     #OB: changing the type of a string into pathlib.WindowsPath
     dict_root = Path(get_root_from_table(dict_path))
+    #OB: C'est une variable clé 1 !
     for i in range(1,5):
         filepath = dict_root/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
         fileName="Feature"+kk+"DataLevel"+str(i)+".txt"
@@ -98,11 +98,11 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
             sizearray.append(int(previous) + int(str(line).split(' ')[0]))
             print ('size',sizearray)
             #OB: I guess this is a part from the output: the table where the batch sizes are recorded.
+            #OB: This is a modified function.
 
         #fill in the fscore of macroaverage
         with open(filepathData) as fp:
             line = fp.readline()
-            cnt = 1
             #OB : the above defined variable does not seem to be used, why is it there?
             while line:
                 line=" ".join(line.split())
