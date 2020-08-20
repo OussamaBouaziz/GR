@@ -77,11 +77,11 @@ def get_root_from_table(table):
 
     return root_path
 
-#OB:
+
+# OB: detected another fuction which is used here, defined after this one. Replaced it above this one.
 def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     sizearray=[0]
     scorearray=[0]
-    #OB: detected another fuction which is used here, defined after this one. Replaced it above.
     #OB: changing the type of a string into pathlib.WindowsPath
     dict_root = Path(get_root_from_table(dict_path))
     for i in range(1,5):
@@ -96,17 +96,14 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
             line = fp.readline()
             # print (line)
             #OB: I don't get this !the initiation is sizearray=[0], len(sizearray)=1 , how can len(sizearray)==0 or
-            # why do we have this step at all ?
-            if len(sizearray)==0:
-                sizearray.append(int(str(line).split(' ')[0]))
-                print ('size', sizearray)
-            else:
-                previous=sizearray[i - 1]
+            # why do we have this step/condition at all ?
+
+            previous=sizearray[i - 1]
                 # print ('index',i-1)
-                sizearray.append(int(previous) + int(str(line).split(' ')[0]))
+            sizearray.append(int(previous) + int(str(line).split(' ')[0]))
                 #another variable that hasn't been used
-                current=sizearray[i ]
-                print ('size',sizearray)
+            current=sizearray[i ]
+            print ('size',sizearray)
                 #OB: I guess this is a part from the output: the table where the batch sizes are recorded.
 
         #fill in the fscore of macroaverage
@@ -117,7 +114,7 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
             while line:
                 line=" ".join(line.split())
                 if "(macro" in str(line).split(' '):
-                    splitLine=str(line).split(' ')
+                    splitLine = str(line).split(' ')
                     # print (splitLine)
                     scorearray.append(splitLine[len(splitLine) - 2])
                 line = fp.readline()
