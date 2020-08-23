@@ -58,12 +58,15 @@ def get_feature_for_model(model_name, dictionary, ff):
     if model_name == "sub-sense":
         ff="Bigram"
 
-
+#ff = "Bigram" if [(model_name = sub-sense, form, dictionary-segmentation)
+    # or (model_name=lexical_entry and dictionary= DLF or Eebd) or
+#ff = "Engineered if model_name = dictionary-body-segmentation
+#ff = Unigram if model_name = gramGrp
     return ff
 
 #OB: Replaced the function,
 #OB: takes an array and returns a string.
-# The path,or root, initialized as a null string, is being constituted after
+#OB: The path,or root, initialized as a null string, is being constituted after
 # each iteration. It will later (function: getarraysfromdict) constitute a part of the path leading to the batch
 
 def get_root_from_table(table):
@@ -81,11 +84,15 @@ def get_root_from_table(table):
 def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     sizearray=[0]
     scorearray=[0]
-    #OB: changing the type of a string into pathlib.WindowsPath
+    #OB: changing the type of an array of strings into pathlib.WindowsPath
+    #OB: These are relative paths
     dict_root = Path(get_root_from_table(dict_path))
+    print(dict_root,"<<<<<<<")
+    print(dict_path,"********")
+    print(get_root_from_table(dict_path),"+++++++++")
     #OB: C'est une variable clé 1 !
-    # OB: Alors dict_path doit être retiree de cette boucle et doit être eingegeben as input().
-    # OB: dictpath won't be needed !
+    # OB: Alors dict_path doit être retirée de cette boucle et doit être eingegeben as input().
+    # OB: dictpath probably won't be needed !
     for i in range(1,5):
         filepath = dict_root/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
         fileName="Feature"+kk+"DataLevel"+str(i)+".txt"
