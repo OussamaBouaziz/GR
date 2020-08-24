@@ -27,6 +27,29 @@ data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
 
 #OB: depending on strings existing in model_name the ff variable will take the next string in order to
 # get to the feature (completing the path).
+
+def ask():
+    print("write the path")
+    urpath = input()
+    dict_path1 = str(urpath).split('\\')
+    print(dict_path1)
+    print(type(dict_path1))
+    index = dict_path1.index("grobid-dictionaries_data")
+    dict_name1 = dict_path1[index + 1]
+    for i in range(index):
+        index = dict_path1.index("grobid-dictionaries_data")
+        # print(index)
+        dict_path1.remove(dict_path1[index - 1])
+
+
+    dict_root1 = Path(get_root_from_table(dict_path1))
+
+    print("The path ", dict_path1)
+    print("The root ", dict_root1)
+    print("The name", dict_name1)
+    return dict_path1, dict_root1, dict_name1
+
+
 def get_feature_for_model(model_name, dictionary, ff):
     if model_name == "dictionary-segmentation":
         ff="Bigram"
@@ -110,8 +133,8 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     #OB: changing the type of an array of strings into pathlib.WindowsPath
     #OB: These are relative paths
     dict_root = Path(get_root_from_table(dict_path))
-    print("dict path ", dict_path)
-    print("dict root ",dict_root)
+    print("dict path ", dict_path1)
+    print("dict root ",dict_root1)
 
     print(get_root_from_table(dict_path1),"+++++++++")
     #OB: C'est une variable clé 1 !
@@ -242,6 +265,7 @@ def get_curve_dictionary (arrModels,fk):
         plt.legend(fontsize=16)
         fig.savefig(f'figures/Curve_{dictname}.png', dpi=100)
         plt.close(fig)
+
 
 get_curve_dictionary(arrDictModels,fk)
 
