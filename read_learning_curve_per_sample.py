@@ -84,29 +84,43 @@ def get_root_from_table(table):
 def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     sizearray=[0]
     scorearray=[0]
-    print("Please enter the Path of the dictionary you want to evaluate")
+    #print("Please enter the Path of the dictionary you want to evaluate")
+    #urpath = input()
+    print("write the path")
     urpath = input()
+    dict_path1 = str(urpath).split('\\')
+    print(dict_path1)
+    print(type(dict_path1))
+    index = dict_path1.index("grobid-dictionaries_data")
+    for i in range(index):
+        index = dict_path1.index("grobid-dictionaries_data")
+        print(index)
+        dict_path1.remove(dict_path1[index - 1])
+    print(dict_path1)
+    dict_root1 = Path(get_root_from_table(dict_path1))
+    print(dict_root1)
 
 
-    if platform.system() == 'Windows':
-        dict_path1= str(urpath).split('\\')
-    else:
-        dict_path1= str(urpath).split('/')
+    #if platform.system() == 'Windows':
+     #   dict_path1= str(urpath).split('\\')
+    #else:
+     #   dict_path1= str(urpath).split('/')
 
 
     #OB: changing the type of an array of strings into pathlib.WindowsPath
     #OB: These are relative paths
-    dict_root = Path(get_root_from_table(dict_path1))
+    dict_root = Path(get_root_from_table(dict_path))
+    print("dict path ", dict_path)
     print("dict root ",dict_root)
-    print("dict path ",dict_path)
-    print(get_root_from_table(dict_path),"+++++++++")
+
+    print(get_root_from_table(dict_path1),"+++++++++")
     #OB: C'est une variable clé 1 !
     # OB: Alors dict_path doit être retirée de cette boucle et doit être eingegeben as input().
     # OB: dictpath probably won't be needed !
     for i in range(1,5):
-        filepath = dict_root/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
+        filepath = dict_root1/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
         fileName="Feature"+kk+"DataLevel"+str(i)+".txt"
-        filepathData = dict_root/ "evalWAPITI" / dict_name  /dictModel/ str(fileName)
+        filepathData = dict_root1/ "evalWAPITI" / dict_name  /dictModel/ str(fileName)
         print ("sizepath ", filepath)
         print ("datapath ", filepathData)
         #fill in the batche size array incrementally
