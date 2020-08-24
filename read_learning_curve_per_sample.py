@@ -93,14 +93,6 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     else:
         dict_path1= str(urpath).split('/')
 
-    print(dict_path1,"........")
-
-    for i in range(len(dict_path1)):
-        index = ["grobid-dictionaries_data"]
-        print(type(index))
-        #dict_path2 = np.delete(dict_path1,index-1)
-        print(dict_path1)
-
 
     #OB: changing the type of an array of strings into pathlib.WindowsPath
     #OB: These are relative paths
@@ -111,33 +103,33 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     #OB: C'est une variable clé 1 !
     # OB: Alors dict_path doit être retirée de cette boucle et doit être eingegeben as input().
     # OB: dictpath probably won't be needed !
-    #for i in range(1,5):
-    filepath = dict_root/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
-    fileName="Feature"+kk+"DataLevel"+str(i)+".txt"
-    filepathData = dict_root/ "evalWAPITI" / dict_name  /dictModel/ str(fileName)
-    print ("sizepath ", filepath)
-    print ("datapath ", filepathData)
+    for i in range(1,5):
+        filepath = dict_root/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
+        fileName="Feature"+kk+"DataLevel"+str(i)+".txt"
+        filepathData = dict_root/ "evalWAPITI" / dict_name  /dictModel/ str(fileName)
+        print ("sizepath ", filepath)
+        print ("datapath ", filepathData)
         #fill in the batche size array incrementally
         #OB: well this [fp, open(), readline()] is new to me  !
-    with open(filepath) as fp:
-     line = fp.readline()
-     previous=sizearray[i - 1]
-     sizearray.append(int(previous) + int(str(line).split(' ')[0]))
-    print ('size',sizearray)
-    #OB: I guess this is a part from the output: the table where the batch sizes are recorded.
-    #OB: This is a modified function.
+        with open(filepath) as fp:
+            line = fp.readline()
+            previous=sizearray[i - 1]
+            sizearray.append(int(previous) + int(str(line).split(' ')[0]))
+            print ('size',sizearray)
+            #OB: I guess this is a part from the output: the table where the batch sizes are recorded.
+            #OB: This is a modified function.
 
         #fill in the fscore of macroaverage
-    with open(filepathData) as fp:
-        line = fp.readline()
-            #OB : the above defined variable does not seem to be used, why is it there?
-        while line:
-            line=" ".join(line.split())
-            if "(macro" in str(line).split(' '):
-                splitLine = str(line).split(' ')
-                    # print (splitLine)
-                scorearray.append(splitLine[len(splitLine) - 2])
+        with open(filepathData) as fp:
             line = fp.readline()
+            #OB : the above defined variable does not seem to be used, why is it there?
+            while line:
+                line=" ".join(line.split())
+                if "(macro" in str(line).split(' '):
+                    splitLine = str(line).split(' ')
+                    # print (splitLine)
+                    scorearray.append(splitLine[len(splitLine) - 2])
+                line = fp.readline()
     return sizearray, scorearray;
 
 
