@@ -44,9 +44,9 @@ def ask():
 
     dict_root1 = Path(get_root_from_table(dict_path1))
 
-    print("The path ", dict_path1)
-    print("The root ", dict_root1)
-    print("The name", dict_name1)
+    #print("The path ", dict_path1)
+    #print("The root ", dict_root1)
+    #print("The name", dict_name1)
     return dict_path1, dict_root1, dict_name1
 
 
@@ -109,19 +109,7 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     scorearray=[0]
     #print("Please enter the Path of the dictionary you want to evaluate")
     #urpath = input()
-    print("write the path")
-    urpath = input()
-    dict_path1 = str(urpath).split('\\')
-    print(dict_path1)
-    print(type(dict_path1))
-    index = dict_path1.index("grobid-dictionaries_data")
-    for i in range(index):
-        index = dict_path1.index("grobid-dictionaries_data")
-        print(index)
-        dict_path1.remove(dict_path1[index - 1])
-    print(dict_path1)
-    dict_root1 = Path(get_root_from_table(dict_path1))
-    print(dict_root1)
+
 
 
     #if platform.system() == 'Windows':
@@ -132,18 +120,18 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
 
     #OB: changing the type of an array of strings into pathlib.WindowsPath
     #OB: These are relative paths
-    dict_root = Path(get_root_from_table(dict_path))
-    print("dict path ", dict_path1)
-    print("dict root ",dict_root1)
+    dict_root = Path(get_root_from_table(dictionary[0]))
+    print("dict path ", dictionary[0])
+    print("dict root ", dictionary[1])
 
-    print(get_root_from_table(dict_path1),"+++++++++")
+    print(get_root_from_table(dictionary[0]),"+++++++++")
     #OB: C'est une variable clé 1 !
     # OB: Alors dict_path doit être retirée de cette boucle et doit être eingegeben as input().
     # OB: dictpath probably won't be needed !
     for i in range(1,5):
-        filepath = dict_root1/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
+        filepath = dictionary[1]/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
         fileName="Feature"+kk+"DataLevel"+str(i)+".txt"
-        filepathData = dict_root1/ "evalWAPITI" / dict_name  /dictModel/ str(fileName)
+        filepathData = dictionary[1]/ "evalWAPITI" / dictionary[2] /dictModel/ str(fileName)
         print ("sizepath ", filepath)
         print ("datapath ", filepathData)
         #fill in the batche size array incrementally
@@ -155,7 +143,6 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
             print ('size',sizearray)
             #OB: I guess this is a part from the output: the table where the batch sizes are recorded.
             #OB: This is a modified function.
-
         #fill in the fscore of macroaverage
         with open(filepathData) as fp:
             line = fp.readline()
@@ -211,7 +198,7 @@ def get_curve_dictionary (arrModels,fk):
             dictpatharray = str(dict_path).split('/')
 
         dictname = dictpatharray[len(dictpatharray)-1]
-        print(dictname,"****")
+        print("****",dictionary[2],"****")
         for dictModel in arrModels:
             if dictModel== "dictionary-segmentation":
                 fk=get_feature_for_model(dictModel, dictname, fk)
@@ -266,7 +253,7 @@ def get_curve_dictionary (arrModels,fk):
         fig.savefig(f'figures/Curve_{dictname}.png', dpi=100)
         plt.close(fig)
 
-
+dictionary=ask()
 get_curve_dictionary(arrDictModels,fk)
 
 # dictnamearray = str(data_folderEEBD).split('/')
