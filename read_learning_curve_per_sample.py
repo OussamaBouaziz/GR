@@ -51,6 +51,7 @@ def ask():
 
 
 def get_feature_for_model(model_name, dictionary, ff):
+    dictionary = dictionary[2]
     if model_name == "dictionary-segmentation":
         ff="Bigram"
 
@@ -197,8 +198,8 @@ def get_curve_dictionary (arrModels,fk):
         else:
             dictpatharray = str(dict_path).split('/')
 
-        dictname = dictpatharray[len(dictpatharray)-1]
-        print("****",dictionary[2],"****")
+        dictname = dictionary[2]
+        print("****",dictname,"****")
         for dictModel in arrModels:
             if dictModel== "dictionary-segmentation":
                 fk=get_feature_for_model(dictModel, dictname, fk)
