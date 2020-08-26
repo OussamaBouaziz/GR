@@ -9,6 +9,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 import platform
 from pathlib import Path
+import os , sys
 #This function can be improved :
     #Solve the MAJ problem
     #Correct the path :
@@ -32,14 +33,19 @@ def ask():
     #print(type(dict_path1))
     index = dict_path1.index("grobid-dictionaries_data")
     dict_name1 = dict_path1[index + 1]
+
     for i in range(index):
         index = dict_path1.index("grobid-dictionaries_data")
         dict_path1.remove(dict_path1[index - 1])
 
     dict_root1 = Path(get_root_from_table(dict_path1))
 
+    urpath2 = urpath + "\evalWAPITI"
+    dirt = os.listdir(urpath2)
+    print(urpath2)
+    comp = str(dirt[0])
 
-    comp = completion.get(dict_name1)
+
 
     #print("The path ", dict_path1)
     #print("The root ", dict_root1)
