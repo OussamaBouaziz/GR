@@ -18,14 +18,6 @@ import os , sys
 
 def ask():
 
-    completion = {
-        "EEBD": "EEBD",
-        "FangFr": "Fang-Fr",
-        "MxSp": "Mix-Sp",
-        "FrFang": "FrFang",
-        "DLF": "DLF"
-    }
-
     print("Write the path to the dictionary whose scoring you want to visualize. ")
     urpath = input()
     dict_path1 = str(urpath).split('\\')
