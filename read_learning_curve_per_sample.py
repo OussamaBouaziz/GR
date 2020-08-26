@@ -27,7 +27,16 @@ data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
 
 #OB: depending on strings existing in model_name the ff variable will take the next string in order to
 # get to the feature (completing the path).
+def get_root_from_table(table):
+    root_path=""
+    for element in table:
+        if element == "evalWAPITI":
+            break
+        else:
+            if not (element ==""):
+                root_path += element +"/"
 
+    return root_path
 def ask():
     print("write the path")
     urpath = input()
@@ -35,6 +44,7 @@ def ask():
     print(dict_path1)
     print(type(dict_path1))
     index = dict_path1.index("grobid-dictionaries_data")
+    pointeur = dict_path1[index + 1]
     dict_name1 = dict_path1[index + 1]
     for i in range(index):
         index = dict_path1.index("grobid-dictionaries_data")
@@ -43,12 +53,23 @@ def ask():
 
 
     dict_root1 = Path(get_root_from_table(dict_path1))
-
-
-    #print("The path ", dict_path1)
+    completion = {
+        "EEBD": "EEBD",
+        "FangFr": "Fang-Fr",
+        "MxSp": "Mix-Sp",
+        "FrFang": "FrFang",
+        "DLF": "DLF"
+    }
+    comp = completion.get(pointeur)
+    #print(completion)
+    #comp_name = completion[dict_path1[index + 1]]
+    #print(comp_name)
+    print("The path ", dict_path1)
     #print("The root ", dict_root1)
     #print("The name", dict_name1)
-    return dict_path1, dict_root1, dict_name1
+    return dict_path1, dict_root1, dict_name1, comp
+dictionary=ask()
+print(dictionary[3],"completion ")
 
 
 def get_feature_for_model(model_name, dictionary, ff):
@@ -94,16 +115,7 @@ def get_feature_for_model(model_name, dictionary, ff):
 #OB: The path,or root, initialized as a null string, is being constituted after
 # each iteration. It will later (function: getarraysfromdict) constitute a part of the path leading to the batch
 
-def get_root_from_table(table):
-    root_path=""
-    for element in table:
-        if element == "evalWAPITI":
-            break
-        else:
-            if not (element ==""):
-                root_path += element +"/"
 
-    return root_path
 
 # OB: Replaced function above this one.
 def getarraysfromdict(dict_path, dictModel,dict_name,kk):
@@ -133,7 +145,7 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     for i in range(1,5):
         filepath = dictionary[1]/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
         fileName="Feature"+kk+"DataLevel"+str(i)+".txt"
-        filepathData = dictionary[1]/ "evalWAPITI" / dictionary[2] /dictModel/ str(fileName)
+        filepathData = dictionary[1]/ "evalWAPITI" / dictionary[3] /dictModel/ str(fileName)
         print ("sizepath ", filepath)
         print ("datapath ", filepathData)
         #fill in the batche size array incrementally
@@ -255,7 +267,7 @@ def get_curve_dictionary (arrModels,fk):
         fig.savefig(f'figures/Curve_{dictname}.png', dpi=100)
         plt.close(fig)
 
-dictionary=ask()
+
 get_curve_dictionary(arrDictModels,fk)
 
 # dictnamearray = str(data_folderEEBD).split('/')
