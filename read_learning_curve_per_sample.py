@@ -9,24 +9,46 @@ import numpy as np
 from matplotlib import pyplot as plt
 import platform
 from pathlib import Path
+#This function can be improved :
+    #Solve the MAJ problem
+    #Correct the path :
+        #C:\Users\User\Documents\GitHub\benchmark1\grobid-dictionaries_data\DLF\(anything)
+    #Passibility to type more paths and /or  (y/n questions : do you want the learning curves for another dictionary ?
 
-arrDictModels= ["dictionary-segmentation", "dictionary-body-segmentation", "lexical-entry", "form", "gramGrp", "sense", "sub-sense"]
+def ask():
 
-#OB: assigning a path (of type path) to each of the variables.
-dict_folderEEBD = Path("grobid-dictionaries_data/EEBD/dataset/")
-dict_folderMxSp = Path("grobid-dictionaries_data/MxSp/dataset/")
-dict_folderFangFr = Path("grobid-dictionaries_data/FangFr/dataset/")
-dict_folderFrFang = Path("grobid-dictionaries_data/FrFang/dataset/")
-dict_folderDLF = Path("grobid-dictionaries_data/DLF/dataset/")
+    completion = {
+        "EEBD": "EEBD",
+        "FangFr": "Fang-Fr",
+        "MxSp": "Mix-Sp",
+        "FrFang": "FrFang",
+        "DLF": "DLF"
+    }
 
-# batch_folderDLF = Path("/Users/med/Google Drive/experimentDisseration/BasicEnglish2020/dataset/")
+    print("Write the path to the dictionary whose scoring you want to visualize. ")
+    urpath = input()
+    dict_path1 = str(urpath).split('\\')
+    #print(dict_path1)
+    #print(type(dict_path1))
+    index = dict_path1.index("grobid-dictionaries_data")
+    dict_name1 = dict_path1[index + 1]
+    for i in range(index):
+        index = dict_path1.index("grobid-dictionaries_data")
+        dict_path1.remove(dict_path1[index - 1])
 
-# data_folderDLF = Path("/Users/med/Google Drive/experimentDisseration/BasicEnglish2020/evalWAPITI/Eebd/")
+    dict_root1 = Path(get_root_from_table(dict_path1))
 
-data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
 
-#OB: depending on strings existing in model_name the ff variable will take the next string in order to
-# get to the feature (completing the path).
+    comp = completion.get(dict_name1)
+
+    #print("The path ", dict_path1)
+    #print("The root ", dict_root1)
+    #print("The name", dict_name1)
+
+    return dict_path1, dict_root1, dict_name1, comp
+
+
+
 def get_root_from_table(table):
     root_path=""
     for element in table:
@@ -37,39 +59,9 @@ def get_root_from_table(table):
                 root_path += element +"/"
 
     return root_path
-def ask():
-    print("write the path")
-    urpath = input()
-    dict_path1 = str(urpath).split('\\')
-    print(dict_path1)
-    print(type(dict_path1))
-    index = dict_path1.index("grobid-dictionaries_data")
-    pointeur = dict_path1[index + 1]
-    dict_name1 = dict_path1[index + 1]
-    for i in range(index):
-        index = dict_path1.index("grobid-dictionaries_data")
-        # print(index)
-        dict_path1.remove(dict_path1[index - 1])
 
 
-    dict_root1 = Path(get_root_from_table(dict_path1))
-    completion = {
-        "EEBD": "EEBD",
-        "FangFr": "Fang-Fr",
-        "MxSp": "Mix-Sp",
-        "FrFang": "FrFang",
-        "DLF": "DLF"
-    }
-    comp = completion.get(pointeur)
-    #print(completion)
-    #comp_name = completion[dict_path1[index + 1]]
-    #print(comp_name)
-    print("The path ", dict_path1)
-    #print("The root ", dict_root1)
-    #print("The name", dict_name1)
-    return dict_path1, dict_root1, dict_name1, comp
-dictionary=ask()
-print(dictionary[3],"completion ")
+
 
 
 def get_feature_for_model(model_name, dictionary, ff):
@@ -121,27 +113,11 @@ def get_feature_for_model(model_name, dictionary, ff):
 def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     sizearray=[0]
     scorearray=[0]
-    #print("Please enter the Path of the dictionary you want to evaluate")
-    #urpath = input()
 
-
-
-    #if platform.system() == 'Windows':
-     #   dict_path1= str(urpath).split('\\')
-    #else:
-     #   dict_path1= str(urpath).split('/')
-
-
-    #OB: changing the type of an array of strings into pathlib.WindowsPath
-    #OB: These are relative paths
-    dict_root = Path(get_root_from_table(dictionary[0]))
-    print("dict path ", dictionary[0])
+    print("get root from this table >>> ", dictionary[0])
+    print(get_root_from_table(dictionary[0]), "<<< this root")
     print("dict root ", dictionary[1])
 
-    print(get_root_from_table(dictionary[0]),"+++++++++")
-    #OB: C'est une variable clé 1 !
-    # OB: Alors dict_path doit être retirée de cette boucle et doit être eingegeben as input().
-    # OB: dictpath probably won't be needed !
     for i in range(1,5):
         filepath = dictionary[1]/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
         fileName="Feature"+kk+"DataLevel"+str(i)+".txt"
@@ -149,14 +125,13 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
         print ("sizepath ", filepath)
         print ("datapath ", filepathData)
         #fill in the batche size array incrementally
-        #OB: well this [fp, open(), readline()] is new to me  !
+
         with open(filepath) as fp:
             line = fp.readline()
             previous=sizearray[i - 1]
             sizearray.append(int(previous) + int(str(line).split(' ')[0]))
-            print ('size',sizearray)
-            #OB: I guess this is a part from the output: the table where the batch sizes are recorded.
-            #OB: This is a modified function.
+            print ("Batches' sizes",sizearray,)
+
         #fill in the fscore of macroaverage
         with open(filepathData) as fp:
             line = fp.readline()
@@ -195,7 +170,6 @@ sense_score=[]
 subsense_size=[]
 subsense_score=[]
 
-#OB: So if the Output of a function is a plot we don't need return ?
 def get_curve_dictionary (arrModels,fk):
     data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
     data_folderMxSp = Path("grobid-dictionaries_data/MxSp/evalWAPITI/Mix-Sp/")
@@ -267,10 +241,10 @@ def get_curve_dictionary (arrModels,fk):
         fig.savefig(f'figures/Curve_{dictname}.png', dpi=100)
         plt.close(fig)
 
-
+dictionary=ask()
+arrDictModels= ["dictionary-segmentation", "dictionary-body-segmentation", "lexical-entry", "form", "gramGrp", "sense", "sub-sense"]
 get_curve_dictionary(arrDictModels,fk)
 
 # dictnamearray = str(data_folderEEBD).split('/')
 # print(dictnamearray)
-# print(get_root_from_table(dictnamearray))
 #save check
