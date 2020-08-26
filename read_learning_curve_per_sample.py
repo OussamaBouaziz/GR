@@ -44,6 +44,7 @@ def ask():
 
     dict_root1 = Path(get_root_from_table(dict_path1))
 
+
     #print("The path ", dict_path1)
     #print("The root ", dict_root1)
     #print("The name", dict_name1)
