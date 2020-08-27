@@ -106,7 +106,7 @@ def get_feature_for_model(model_name, dictionary, ff):
 
 
 # OB: Replaced function above this one.
-def getarraysfromdict(dict_path, dictModel,dict_name,kk):
+def getarraysfromdict( dictModel,kk):
     sizearray=[0]
     scorearray=[0]
 
@@ -183,28 +183,28 @@ def get_curve_dictionary (arrModels,fk):
             print("***", dictModel, "****")
             if dictModel== "dictionary-segmentation":
                 fk=get_feature_for_model(dictModel, dictname, fk)
-                ds_size, ds_score = getarraysfromdict(dictpatharray, dictModel, dictname, fk)
+                ds_size, ds_score = getarraysfromdict( dictModel,  fk)
 
             if dictModel== "dictionary-body-segmentation":
 
-                dbs_size, dbs_score = getarraysfromdict(dictpatharray, dictModel,dictname, fk)
+                dbs_size, dbs_score = getarraysfromdict( dictModel,  fk)
 
             if dictModel== "lexical-entry":
-                le_size, le_score = getarraysfromdict(dictpatharray, dictModel, dictname, fk)
+                le_size, le_score = getarraysfromdict( dictModel,  fk)
 
             if dictModel== "form":
-                form_size, form_score = getarraysfromdict(dictpatharray, dictModel, dictname, fk)
+                form_size, form_score = getarraysfromdict( dictModel,  fk)
 
             if dictModel== "gramGrp":
                 if not (dictname == "FrFang"):
-                    gramGrp_size, gramGrp_score = getarraysfromdict(dictpatharray, dictModel, dictname, fk)
+                    gramGrp_size, gramGrp_score = getarraysfromdict( dictModel,  fk)
                 # print("skip")
 
             if dictModel== "sense":
-                sense_size, sense_score = getarraysfromdict(dictpatharray, dictModel, dictname, fk)
+                sense_size, sense_score = getarraysfromdict( dictModel,  fk)
 
             if dictModel== "sub-sense":
-                subsense_size, subsense_score = getarraysfromdict(dictpatharray, dictModel, dictname, fk)
+                subsense_size, subsense_score = getarraysfromdict( dictModel,  fk)
 
 
 
