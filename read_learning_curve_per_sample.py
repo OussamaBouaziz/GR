@@ -37,14 +37,11 @@ def ask():
     print(urpath2)
     comp = str(dirt[0])
 
-
-
-    print("The path ", dict_path1)
-    print("The root ", dict_root1)
-    print("The name", dict_name1)
+    #print("The path ", dict_path1)
+    #print("The root ", dict_root1)
+    #print("The name", dict_name1)
 
     return dict_path1, dict_root1, dict_name1, comp
-
 
 
 def get_root_from_table(table):
@@ -181,13 +178,15 @@ def get_curve_dictionary (arrModels,fk):
             dictpatharray = str(dict_path).split('/')
 
         dictname = dictionary[2]
-        print("****",dictname,"****")
+
         for dictModel in arrModels:
+            print("***", dictModel, "****")
             if dictModel== "dictionary-segmentation":
                 fk=get_feature_for_model(dictModel, dictname, fk)
                 ds_size, ds_score = getarraysfromdict(dictpatharray, dictModel, dictname, fk)
 
             if dictModel== "dictionary-body-segmentation":
+
                 dbs_size, dbs_score = getarraysfromdict(dictpatharray, dictModel,dictname, fk)
 
             if dictModel== "lexical-entry":
@@ -236,10 +235,26 @@ def get_curve_dictionary (arrModels,fk):
         fig.savefig(f'figures/Curve_{dictname}.png', dpi=100)
         plt.close(fig)
 
-dictionary=ask()
-arrDictModels= ["dictionary-segmentation", "dictionary-body-segmentation", "lexical-entry", "form", "gramGrp", "sense", "sub-sense"]
-get_curve_dictionary(arrDictModels,fk)
+arrDictModels = ["dictionary-segmentation", "dictionary-body-segmentation", "lexical-entry", "form", "gramGrp",
+                     "sense", "sub-sense"]
 
-# dictnamearray = str(data_folderEEBD).split('/')
-# print(dictnamearray)
-#save check
+again = True
+while again == True:
+    dictionary = ask()
+    get_curve_dictionary(arrDictModels, fk)
+    print("Another one ? (Y/N)")
+    x=input()
+    if "n" in x or "N" in x:
+        again = False
+        break
+    else:
+            again = True
+
+
+
+#arrDictModels = ["dictionary-segmentation", "dictionary-body-segmentation", "lexical-entry", "form", "gramGrp", "sense", "sub-sense"]
+#dictionary= ask()
+#get_curve_dictionary(arrDictModels, fk)
+#repeat()
+
+
