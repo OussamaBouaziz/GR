@@ -14,13 +14,18 @@ import os , sys
     #Solve the MAJ problem
     #Correct the path :
         #C:\Users\User\Documents\GitHub\benchmark1\grobid-dictionaries_data\DLF\(anything)
-    #Passibility to type more paths and /or  (y/n questions : do you want the learning curves for another dictionary ?
 
 def ask():
 
     print("Write the path to the dictionary whose scoring you want to visualize. ")
     urpath = input()
-    dict_path1 = str(urpath).split('\\')
+    if platform.system() == 'Windows':
+        dict_path1 = str(urpath).split('\\')
+    else:
+        dict_path1 = str(urpath).split('/')
+
+
+
     #print(dict_path1)
     #print(type(dict_path1))
     index = dict_path1.index("grobid-dictionaries_data")
@@ -54,10 +59,6 @@ def get_root_from_table(table):
                 root_path += element +"/"
 
     return root_path
-
-
-
-
 
 def get_feature_for_model(model_name, dictionary, ff):
     dictionary = dictionary[2]
@@ -98,15 +99,8 @@ def get_feature_for_model(model_name, dictionary, ff):
 
     return ff
 
-#OB: Replaced the function,
-#OB: takes an array and returns a string.
-#OB: The path,or root, initialized as a null string, is being constituted after
-# each iteration. It will later (function: getarraysfromdict) constitute a part of the path leading to the batch
 
-
-
-# OB: Replaced function above this one.
-def getarraysfromdict( dictModel,kk):
+def getarraysfromdict(dictModel,kk):
     sizearray=[0]
     scorearray=[0]
 
@@ -167,16 +161,6 @@ subsense_size=[]
 subsense_score=[]
 
 def get_curve_dictionary (arrModels,fk):
-
-    data_folder_Dict =Path( str(dictionary[1] / "evalWAPITI" / dictionary[3]))
-    arrPaths = [data_folder_Dict]
-
-    for dict_path in arrPaths:
-        if platform.system() == 'Windows':
-            dictpatharray = str(dict_path).split('\\')
-        else:
-            dictpatharray = str(dict_path).split('/')
-
         dictname = dictionary[2]
 
         for dictModel in arrModels:
@@ -235,9 +219,7 @@ def get_curve_dictionary (arrModels,fk):
         fig.savefig(f'figures/Curve_{dictname}.png', dpi=100)
         plt.close(fig)
 
-arrDictModels = ["dictionary-segmentation", "dictionary-body-segmentation", "lexical-entry", "form", "gramGrp",
-                     "sense", "sub-sense"]
-
+arrDictModels = ["dictionary-segmentation", "dictionary-body-segmentation", "lexical-entry", "form", "gramGrp", "sense", "sub-sense"]
 again = True
 while again == True:
     dictionary = ask()
@@ -249,12 +231,3 @@ while again == True:
         break
     else:
             again = True
-
-
-
-#arrDictModels = ["dictionary-segmentation", "dictionary-body-segmentation", "lexical-entry", "form", "gramGrp", "sense", "sub-sense"]
-#dictionary= ask()
-#get_curve_dictionary(arrDictModels, fk)
-#repeat()
-
-
