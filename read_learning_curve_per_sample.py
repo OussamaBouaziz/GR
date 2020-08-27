@@ -39,9 +39,9 @@ def ask():
 
 
 
-    #print("The path ", dict_path1)
-    #print("The root ", dict_root1)
-    #print("The name", dict_name1)
+    print("The path ", dict_path1)
+    print("The root ", dict_root1)
+    print("The name", dict_name1)
 
     return dict_path1, dict_root1, dict_name1, comp
 
@@ -98,6 +98,7 @@ def get_feature_for_model(model_name, dictionary, ff):
     # or (model_name=lexical_entry and dictionary= DLF or Eebd) or
 #ff = "Engineered if model_name = dictionary-body-segmentation
 #ff = Unigram if model_name = gramGrp
+
     return ff
 
 #OB: Replaced the function,
@@ -112,9 +113,9 @@ def getarraysfromdict(dict_path, dictModel,dict_name,kk):
     sizearray=[0]
     scorearray=[0]
 
-    print("get root from this table >>> ", dictionary[0])
-    print(get_root_from_table(dictionary[0]), "<<< this root")
-    print("dict root ", dictionary[1])
+    #print("get root from this table >>> ", dictionary[0])
+    #print(get_root_from_table(dictionary[0]), "<<< this root")
+    #print("dict root ", dictionary[1])
 
     for i in range(1,5):
         filepath = dictionary[1]/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
@@ -169,13 +170,9 @@ subsense_size=[]
 subsense_score=[]
 
 def get_curve_dictionary (arrModels,fk):
-    data_folderEEBD = Path("grobid-dictionaries_data/EEBD/evalWAPITI/eebd/")
-    data_folderMxSp = Path("grobid-dictionaries_data/MxSp/evalWAPITI/Mix-Sp/")
-    data_folderFangFr = Path("grobid-dictionaries_data/FangFr/evalWAPITI/Fang-Fr/")
-    data_folderFrFang = Path("grobid-dictionaries_data/FrFang/evalWAPITI/FrFang/")
-    data_folderDLF = Path("grobid-dictionaries_data/DLF/evalWAPITI/DLF/")
 
-    arrPaths= [data_folderEEBD, data_folderMxSp, data_folderFangFr, data_folderFrFang, data_folderDLF]
+    data_folder_Dict =Path( str(dictionary[1] / "evalWAPITI" / dictionary[3]))
+    arrPaths = [data_folder_Dict]
 
     for dict_path in arrPaths:
         if platform.system() == 'Windows':
