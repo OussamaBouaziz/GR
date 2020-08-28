@@ -173,34 +173,37 @@ subsense_score=[]
 def get_curve_dictionary (arrModels,fk):
         dictname = dictionary[2]
 
+
         for dictModel in arrModels:
-            print("***", dictModel, "****")
-            if dictModel== "dictionary-segmentation":
-                fk=get_feature_for_model(dictModel, dictname, fk)
-                ds_size, ds_score = getarraysfromdict( dictModel,  fk)
+            if dictModel in os.listdir(dictionary[1] / "dataset/"):
+                print("***", dictModel, "****")
+                #This can be improved into a dictionary in order to avoid having so many "ifs"
+                    #(if dictModel== "dictionary-segmentation") <-- this can be a problem because there are two actions involved.
+                if dictModel== "dictionary-segmentation":
+                    fk=get_feature_for_model(dictModel, dictname, fk)
+                    ds_size, ds_score = getarraysfromdict( dictModel,  fk)
 
-            if dictModel== "dictionary-body-segmentation":
+                if dictModel== "dictionary-body-segmentation":
 
-                dbs_size, dbs_score = getarraysfromdict( dictModel,  fk)
+                    dbs_size, dbs_score = getarraysfromdict( dictModel,  fk)
 
-            if dictModel== "lexical-entry":
-                le_size, le_score = getarraysfromdict( dictModel,  fk)
+                if dictModel== "lexical-entry":
+                    le_size, le_score = getarraysfromdict( dictModel,  fk)
 
-            if dictModel== "form":
-                form_size, form_score = getarraysfromdict( dictModel,  fk)
+                if dictModel== "form":
+                    form_size, form_score = getarraysfromdict( dictModel,  fk)
 
-            if dictModel== "gramGrp":
-                if not (dictname == "FrFang"):
-                    gramGrp_size, gramGrp_score = getarraysfromdict( dictModel,  fk)
+                if dictModel== "gramGrp":
+                        gramGrp_size, gramGrp_score = getarraysfromdict( dictModel,  fk)
                 # print("skip")
 
-            if dictModel== "sense":
-                sense_size, sense_score = getarraysfromdict( dictModel,  fk)
+                if dictModel== "sense":
+                    sense_size, sense_score = getarraysfromdict( dictModel,  fk)
 
-            if dictModel== "sub-sense":
-                subsense_size, subsense_score = getarraysfromdict( dictModel,  fk)
+                if dictModel== "sub-sense":
+                    subsense_size, subsense_score = getarraysfromdict( dictModel,  fk)
 
-
+                    break
 
         #OB: plotting everything I guess
 
@@ -241,3 +244,7 @@ while again == True:
         break
     else:
             again = True
+
+
+print(type(dictionary[0]),"???")
+print(os.listdir(dictionary[1]/"dataset/"),"fökdhfikfnwlgkenhöoklfmg")
