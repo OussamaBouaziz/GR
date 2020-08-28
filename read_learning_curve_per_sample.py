@@ -45,7 +45,7 @@ def ask():
     if platform.system() == 'Windows':
         urpath  = "\\".join(dict_path1)
     else:
-        dict_path1 = str(urpath).split('/')
+        urpath = str(urpath).split('/')
 
     urpath2 = urpath + "\evalWAPITI"
     dirt = os.listdir(urpath2)
