@@ -31,11 +31,21 @@ def ask():
     index = dict_path1.index("grobid-dictionaries_data")
     dict_name1 = dict_path1[index + 1]
 
+    while len(dict_path1) - 1 > (index + 1):
+        dict_path1.remove(dict_path1[index + 2])
+        print(len(dict_path1))
+        print(dict_path1, "<<<<<<<<")
+
+
     for i in range(index):
         index = dict_path1.index("grobid-dictionaries_data")
         dict_path1.remove(dict_path1[index - 1])
 
     dict_root1 = Path(get_root_from_table(dict_path1))
+    if platform.system() == 'Windows':
+        urpath  = "\\".join(dict_path1)
+    else:
+        dict_path1 = str(urpath).split('/')
 
     urpath2 = urpath + "\evalWAPITI"
     dirt = os.listdir(urpath2)
