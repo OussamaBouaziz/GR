@@ -203,7 +203,7 @@ def get_curve_dictionary (arrModels,fk):
                 if dictModel== "sub-sense":
                     subsense_size, subsense_score = getarraysfromdict( dictModel,  fk)
 
-                    break
+
 
         #OB: plotting everything I guess
 
@@ -246,5 +246,5 @@ while again == True:
             again = True
 
 
-print(type(dictionary[0]),"???")
-print(os.listdir(dictionary[1]/"dataset/"),"fökdhfikfnwlgkenhöoklfmg")
+#print(type(dictionary[0]),"???")
+#print(os.listdir(dictionary[1]/"dataset/"),"fökdhfikfnwlgkenhöoklfmg")
