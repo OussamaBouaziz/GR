@@ -44,10 +44,11 @@ def ask():
     dict_root1 = Path(get_root_from_table(dict_path1))
     if platform.system() == 'Windows':
         urpath  = "\\".join(dict_path1)
+        urpath2 = urpath + "\evalWAPITI"
     else:
         urpath = str(urpath).split('/')
+        urpath2 = urpath + "/evalWAPITI"
 
-    urpath2 = urpath + "\evalWAPITI"
     dirt = os.listdir(urpath2)
     print(urpath2)
     comp = str(dirt[0])
@@ -72,6 +73,9 @@ def get_root_from_table(table):
 
 def get_feature_for_model(model_name, dictionary, ff):
     dictionary = dictionary[2]
+
+
+
     if model_name == "dictionary-segmentation":
         ff="Bigram"
 
