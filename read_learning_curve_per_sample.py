@@ -225,7 +225,7 @@ def get_curve_dictionary (arrModels,fk):
         plt.ylabel('F1-score (Macro-average)', fontsize=16)
         # plt.title(dictname+"'s Learning Curves", fontsize=16)
         plt.legend(fontsize=16)
-        fig.savefig(f'figures/Curve_{dictname}.png', dpi=100)
+        fig.savefig(f'{dictionary[1]}/Curve_{dictname}.png', dpi=100)
         plt.close(fig)
 
 arrDictModels = ["dictionary-segmentation", "dictionary-body-segmentation", "lexical-entry", "form", "gramGrp", "sense", "sub-sense"]
@@ -233,12 +233,13 @@ again = True
 while again == True:
     dictionary = ask()
     get_curve_dictionary(arrDictModels, fk)
-    print("0 :", dictionary[0])
-    print("1 :>", dictionary[1])
+    #print("0 :", dictionary[0])
+    #print("1 :>", dictionary[1])
+    #print(type(dictionary[1]))
     print("2 :>>", dictionary[2])
     print(type(dictionary[2]))
-    print("3 :>>>", dictionary[3])
-    print(type(dictionary[3]))
+    #print("3 :>>>", dictionary[3])
+    #print(type(dictionary[3]))
 
     print("Another one ? (Y/N)")
     x=input()
