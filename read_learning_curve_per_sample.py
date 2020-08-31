@@ -236,8 +236,8 @@ while again == True:
     #print("0 :", dictionary[0])
     #print("1 :>", dictionary[1])
     #print(type(dictionary[1]))
-    print("2 :>>", dictionary[2])
-    print(type(dictionary[2]))
+    #print("2 :>>", dictionary[2])
+    #print(type(dictionary[2]))
     #print("3 :>>>", dictionary[3])
     #print(type(dictionary[3]))
 
