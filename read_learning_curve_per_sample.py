@@ -19,31 +19,28 @@ def ask():
 
     print("Write the path to the dictionary whose scoring you want to visualize. ")
     urpath = input()
+
     if platform.system() == 'Windows':
-        dict_path1 = str(urpath).split('\\')
+        dict_path_arr = str(urpath).split('\\')
     else:
-        dict_path1 = str(urpath).split('/')
+        dict_path_arr = str(urpath).split('/')
 
 
 
-    #print(dict_path1)
-    #print(type(dict_path1))
-    index = dict_path1.index("grobid-dictionaries_data")
-    dict_name1 = dict_path1[index + 1]
 
-    while len(dict_path1) - 1 > (index + 1):
-        dict_path1.remove(dict_path1[index + 2])
-        print(len(dict_path1))
-        print(dict_path1, "<<<<<<<<")
+    index = dict_path_arr.index("grobid-dictionaries_data")
+    dict_name1 = dict_path_arr[index + 1]
 
+    while len(dict_path_arr) - 1 > (index + 1):
+        dict_path_arr.remove(dict_path_arr[index + 2])
 
-    for i in range(index):
-        index = dict_path1.index("grobid-dictionaries_data")
-        dict_path1.remove(dict_path1[index - 1])
+    #for i in range(index):
+        #index = dict_path_arr.index("grobid-dictionaries_data")
+        #dict_path_arr.remove(dict_path_arr[index - 1])
 
-    dict_root1 = Path(get_root_from_table(dict_path1))
+    dict_root1 =  Path(get_root_from_table(dict_path_arr))
     if platform.system() == 'Windows':
-        urpath  = "\\".join(dict_path1)
+        urpath  = "\\".join(dict_path_arr)
         urpath2 = urpath + "\evalWAPITI"
     else:
         urpath = str(urpath).split('/')
@@ -51,13 +48,8 @@ def ask():
 
     dirt = os.listdir(urpath2)
     print(urpath2)
-    comp = str(dirt[0])
 
-    #print("The path ", dict_path1)
-    #print("The root ", dict_root1)
-    #print("The name", dict_name1)
-
-    return dict_path1, dict_root1, dict_name1, comp
+    return dict_path_arr, dict_root1, dict_name1, dirt
 
 
 def get_root_from_table(table):
@@ -125,7 +117,7 @@ def getarraysfromdict(dictModel,kk):
     for i in range(1,5):
         filepath = dictionary[1]/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
         fileName="Feature"+kk+"DataLevel"+str(i)+".txt"
-        filepathData = dictionary[1]/ "evalWAPITI" / dictionary[3] /dictModel/ str(fileName)
+        filepathData = dictionary[1]/ "evalWAPITI" / dictionary[2] /dictModel/ str(fileName)
         print ("sizepath ", filepath)
         print ("datapath ", filepathData)
         #fill in the batche size array incrementally
@@ -241,6 +233,13 @@ again = True
 while again == True:
     dictionary = ask()
     get_curve_dictionary(arrDictModels, fk)
+    print("0 :", dictionary[0])
+    print("1 :>", dictionary[1])
+    print("2 :>>", dictionary[2])
+    print(type(dictionary[2]))
+    print("3 :>>>", dictionary[3])
+    print(type(dictionary[3]))
+
     print("Another one ? (Y/N)")
     x=input()
     if "n" in x or "N" in x:
