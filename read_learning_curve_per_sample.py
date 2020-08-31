@@ -46,8 +46,8 @@ def ask():
         urpath = str(urpath).split('/')
         urpath2 = urpath + "/evalWAPITI"
 
-    dirt = os.listdir(urpath2)
-    print(urpath2)
+    dirt = os.listdir(urpath2)[0]
+
 
     return dict_path_arr, dict_root1, dict_name1, dirt
 
@@ -117,7 +117,7 @@ def getarraysfromdict(dictModel,kk):
     for i in range(1,5):
         filepath = dictionary[1]/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
         fileName="Feature"+kk+"DataLevel"+str(i)+".txt"
-        filepathData = dictionary[1]/ "evalWAPITI" / dictionary[2] /dictModel/ str(fileName)
+        filepathData = dictionary[1]/ "evalWAPITI" / dictionary[3] /dictModel/ str(fileName)
         print ("sizepath ", filepath)
         print ("datapath ", filepathData)
         #fill in the batche size array incrementally
