@@ -246,8 +246,7 @@ while again == True:
     if "n" in x or "N" in x:
         again = False
         break
-    else:
-            again = True
+
 
 
 #print(type(dictionary[0]),"???")
