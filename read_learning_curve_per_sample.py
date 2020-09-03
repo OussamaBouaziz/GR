@@ -25,10 +25,9 @@ def ask():
     else:
         dict_path_arr = str(urpath).split('/')
 
-
-
-
-    index = dict_path_arr.index("grobid-dictionaries_data")
+    #depending on the data structure, one line should be chosen depending on the data structure.
+    #index = dict_path_arr.index("grobid-dictionaries_data")
+    index = dict_path_arr.index("Training_Data&Evaluation")
     dict_name1 = dict_path_arr[index + 1]
 
     while len(dict_path_arr) - 1 > (index + 1):
