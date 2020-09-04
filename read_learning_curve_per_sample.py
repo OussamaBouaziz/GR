@@ -113,6 +113,7 @@ def getarraysfromdict(dictModel,kk):
     #print(get_root_from_table(dictionary[0]), "<<< this root")
     #print("dict root ", dictionary[1])
 
+    #dictionary[1] can actually be extended till "dataset" with the condition that the path itself exists exists. os.exist or smth like this!
     for i in range(1,5):
         filepath = dictionary[1]/ "dataset" / dictModel/ "corpus/batches"/str(i)/"size.txt"
         fileName="Feature"+kk+"DataLevel"+str(i)+".txt"
